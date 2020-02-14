@@ -1,5 +1,4 @@
 #!/bin/bash
-echo
 echo "=================================="
 echo "Removendo travas eventuais do apt"
 echo "=================================="
@@ -22,31 +21,48 @@ mkdir "$DiretorioDeDownloads"
 
 echo
 echo "=================================="
+echo "Programas a serem instalados"
+echo "=================================="
+ProgramasParaInstalar=(
+    snapd
+    git
+    apt-transport-https
+    ca-certificates
+    curl
+    gnupg-agent
+    software-properties-common
+    ktorrent
+    gcc
+    make
+    usb-creator-gtk
+    mysql-workbench
+    python3-distutils
+    anki
+)
+
+echo
+echo "=================================="
 echo "URLs dos programas externos"
 echo "=================================="
-URL_Google_Chrome="https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb"
-URL_Insync="https://d2t3ff60b2tol4.cloudfront.net/builds/insync_3.0.29.40727-bionic_amd64.deb"
-URL_MegaSync="https://mega.nz/linux/MEGAsync/xUbuntu_18.04/amd64/megasync-xUbuntu_18.04_amd64.deb"
+URLs=(
+    "https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb"
+    "https://d2t3ff60b2tol4.cloudfront.net/builds/insync_3.0.29.40727-bionic_amd64.deb"
+    "https://mega.nz/linux/MEGAsync/xUbuntu_18.04/amd64/megasync-xUbuntu_18.04_amd64.deb"
+    "https://linux.dropbox.com/packages/ubuntu/dropbox_2019.02.14_amd64.deb"
+    "https://download.virtualbox.org/virtualbox/6.1.2/virtualbox-6.1_6.1.2-135662~Ubuntu~bionic_amd64.deb"
+    "https://atom-installer.github.com/v1.44.0/atom-amd64.deb?s=1581443298&ext=.deb"
+    "https://dl.discordapp.net/apps/linux/0.0.9/discord-0.0.9.deb"
+)
 
 echo
 echo "=================================="
 echo "Instalacao de programas no apt"
 echo "=================================="
-sudo apt install update -y
-sudo apt install git -y
-sudo apt install apt-transport-https -y
-sudo apt install ca-certificates -y
-sudo apt install curl -y
-sudo apt install gnupg-agent -y
-sudo apt install software-properties-common -y
-sudo apt install ktorrent -y
-sudo apt install gcc -y
-sudo apt install make -y
-sudo apt install usb-creator-gtk -y
-sudo apt install mysql-workbench -y
-sudo apt install nautilus-dropbox -y
-sudo apt install virtualbox-qt -y
-sudo apt install atom -y
+sudo apt update -y
+for NomePrograma in ${ProgramasParaInstalar[@]}; do
+    sudo apt install "$NomePrograma" -y
+done
+
 echo
 echo "=================================="
 echo "Instalacao de programas no snap"
@@ -57,17 +73,17 @@ echo
 echo "=================================="
 echo "Download de programas externos"
 echo "=================================="
-wget -c "$URL_Google_Chrome" -P "$DiretorioDeDownloads"
-wget -c "$URL_Insync" -P "$DiretorioDeDownloads"
-wget -c "$URL_MegaSync" -P "$DiretorioDeDownloads"
+for url in ${URLs[@]}; do
+  wget -c "$url" -P "$DiretorioDeDownloads"
+done
 
 echo
 echo "=================================="
 echo "Instalacao dos programas externos"
 echo "=================================="
-sudo apt install update -y
+sudo apt update -y
 sudo dpkg -i $DiretorioDeDownloads/*.deb
-sudo apt-get -f install -y
+sudo apt -f install -y
 
 echo
 echo "=================================="
@@ -79,23 +95,24 @@ echo
 echo "=================================="
 echo "Instalacao do Docker"
 echo "=================================="
-sudo apt install update -y
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+sudo apt update -y
+sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 sudo apt-key fingerprint 0EBFCD88
-sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
-sudo apt-get install docker-ce docker-ce-cli containerd.io -y
+sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu    bionic    stable"
+sudo apt update -y
+sudo apt install docker-ce docker-ce-cli containerd.io -y
 
 echo
 echo "=================================="
 echo "Instalacao do Docker-Compose"
 echo "=================================="
-sudo apt install update -y
+sudo apt update -y
 sudo curl -L "https://github.com/docker/compose/releases/download/1.25.3/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 sudo chmod +x /usr/local/bin/docker-compose
 
 echo
 echo "=================================="
-echo "Atualizacao"
+echo "Finalizacao"
 echo "=================================="
 sudo apt update -y
-sudo apt upgrade -y
+sudo apt full-upgrade -y
