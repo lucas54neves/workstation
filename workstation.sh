@@ -38,6 +38,9 @@ ProgramasParaInstalar=(
     mysql-workbench
     python3-distutils
     anki
+    python3-gpg
+    mpv
+    gcc
 )
 
 echo
