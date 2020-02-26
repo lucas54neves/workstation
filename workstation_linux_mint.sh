@@ -77,8 +77,7 @@ echo "Instalacao dos programas externos"
 echo "=================================="
 sudo apt update
 sudo dpkg -i $DiretorioDeDownloads/*.deb
-sudo apt-get -f install -t
-rm $DitetorioDeDownloads/*.deb
+sudo apt --fix-broken install
 
 echo
 echo "=================================="
