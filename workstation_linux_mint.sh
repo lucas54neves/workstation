@@ -36,7 +36,6 @@ ProgramasParaInstalar=(
     python3-gpg
     anki
     mpv
-    gcc
     mysql-server
     mysql-workbench
 )
@@ -77,7 +76,7 @@ echo "Instalacao dos programas externos"
 echo "=================================="
 sudo apt update
 sudo dpkg -i $DiretorioDeDownloads/*.deb
-sudo apt --fix-broken install
+sudo apt install -fy
 
 echo
 echo "=================================="
