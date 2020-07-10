@@ -1,2 +1,2 @@
 # workstation
-Automating Ubuntu installation
+Ubuntu post-installation automation
