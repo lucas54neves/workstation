@@ -27,6 +27,7 @@ programsToBeInstalledAPT=(
 # Programs to be installed in Snap
 programsToBeInstalledSnap=(
     telegram-desktop
+    spotify
 )
 
 # External program URLs
@@ -81,13 +82,6 @@ sudo apt install -y docker-ce docker-ce-cli containerd.io
 sudo curl -L "https://github.com/docker/compose/releases/download/1.26.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 sudo chmod +x /usr/local/bin/docker-compose
 
-# Install Spotify
-## Set up the repository
-curl -sS https://download.spotify.com/debian/pubkey.gpg | sudo apt-key add - 
-# deb http://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list
-## Install Spotify client
-sudo apt update && sudo apt install -y spotify-client
-
 # Install Node
 curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
 sudo apt install -y nodejs
@@ -95,18 +89,18 @@ sudo apt install -y nodejs
 # Install Yarn
 ## Set up the repository
 curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
-# deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
 ## Install Yarn
 sudo apt update && sudo apt install -y yarn
 
 # Install Insomnia
 ## Add to sources
-# deb https://dl.bintray.com/getinsomnia/Insomnia /" | sudo tee -a /etc/apt/sources.list.d/insomnia.list
+echo "deb https://dl.bintray.com/getinsomnia/Insomnia /" | sudo tee -a /etc/apt/sources.list.d/insomnia.list
 ## Add public key used to verify code signature
 wget --quiet -O - https://insomnia.rest/keys/debian-public.key.asc | sudo apt-key add -
 ## Refresh repository sources and install Insomnia
 sudo apt update
-sudo apt install insomnia
+sudo apt install -y insomnia
 
 # Completion
 sudo apt update
