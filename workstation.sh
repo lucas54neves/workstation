@@ -1,121 +1,113 @@
-#!/bin/bash
-echo "=================================="
-echo "Removendo travas eventuais do apt"
-echo "=================================="
+#!bin/bash
+
+# Removing eventual APT locks
 sudo rm /var/lib/dpkg/lock-frontend
 sudo rm /var/cache/apt/archives/lock
 
-echo
-echo "=================================="
-echo "Atualizacao"
-echo "=================================="
-sudo apt update -y
-sudo apt upgrade -y
+# Downloads directory
+downloadsDirectory="$HOME/Downloads"
 
-echo
-echo "=================================="
-echo "Diretorio para os programas externos"
-echo "=================================="
-DiretorioDeDownloads="$HOME/Downloads/Packages"
-mkdir "$DiretorioDeDownloads"
-
-echo
-echo "=================================="
-echo "Programas a serem instalados"
-echo "=================================="
-ProgramasParaInstalar=(
-    snapd
+# Programs to be installed in APT
+programsToBeInstalledAPT=(
     git
+    anki
+    mpv
+    make
+    gcc
+    python3
+    python3-distutils
     apt-transport-https
     ca-certificates
     curl
     gnupg-agent
     software-properties-common
-    ktorrent
-    gcc
-    make
-    usb-creator-gtk
-    mysql-workbench
-    python3-distutils
-    anki
-    python3-gpg
-    mpv
-    gcc
+    snapd
 )
 
-echo
-echo "=================================="
-echo "URLs dos programas externos"
-echo "=================================="
+# Programs to be installed in Snap
+programsToBeInstalledSnap=(
+    telegram-desktop
+)
+
+# External program URLs
 URLs=(
-    "https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb"
-    "https://d2t3ff60b2tol4.cloudfront.net/builds/insync_3.0.29.40727-bionic_amd64.deb"
-    "https://mega.nz/linux/MEGAsync/xUbuntu_18.04/amd64/megasync-xUbuntu_18.04_amd64.deb"
-    "https://linux.dropbox.com/packages/ubuntu/dropbox_2019.02.14_amd64.deb"
-    "https://download.virtualbox.org/virtualbox/6.1.2/virtualbox-6.1_6.1.2-135662~Ubuntu~bionic_amd64.deb"
-    "https://atom-installer.github.com/v1.44.0/atom-amd64.deb?s=1581443298&ext=.deb"
-    "https://dl.discordapp.net/apps/linux/0.0.9/discord-0.0.9.deb"
+    "https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb"s
+    "https://download.virtualbox.org/virtualbox/6.1.10/virtualbox-6.1_6.1.10-138449~Ubuntu~eoan_amd64.deb"
+    "https://atom-installer.github.com/v1.48.0/atom-amd64.deb?s=1591785581&ext=.deb"
+    "https://dl.discordapp.net/apps/linux/0.0.10/discord-0.0.10.deb"
+    "https://az764295.vo.msecnd.net/stable/cd9ea6488829f560dc949a8b2fb789f3cdc05f5d/code_1.46.1-1592428892_amd64.deb"
+    "https://d2t3ff60b2tol4.cloudfront.net/builds/insync_3.2.1.40839-bionic_amd64.deb"
 )
 
-echo
-echo "=================================="
-echo "Instalacao de programas no apt"
-echo "=================================="
-sudo apt update -y
-for NomePrograma in ${ProgramasParaInstalar[@]}; do
-    sudo apt install "$NomePrograma" -y
+# System update
+sudo apt update && sudo apt upgrade -y
+
+# Installing APT programs
+sudo apt update
+for programName in ${programsToBeInstalledAPT[@]}; do
+    sudo apt install "$programName" -y
 done
 
-echo
-echo "=================================="
-echo "Instalacao de programas no snap"
-echo "=================================="
-sudo snap install spotify
+# Installing Snap programs
+sudo apt update
+for programName in ${programsToBeInstalledSnap[@]}; do
+    sudo snap install "$programName"
+done
 
-echo
-echo "=================================="
-echo "Download de programas externos"
-echo "=================================="
+# Download external programs
 for url in ${URLs[@]}; do
-  wget -c "$url" -P "$DiretorioDeDownloads"
+  wget -c "$url" -P "$downloadsDirectory"
 done
 
-echo
-echo "=================================="
-echo "Instalacao dos programas externos"
-echo "=================================="
-sudo apt update -y
-sudo dpkg -i $DiretorioDeDownloads/*.deb
-sudo apt -f install -y
+# Installing external programs
+sudo apt update
+sudo dpkg -i $downloadsDirectory/*.deb
+sudo apt install -fy
 
-echo
-echo "=================================="
-echo "Configuracao necessaria para o VirtualBox"
-echo "=================================="
+# Required VirtualBox configuration
 sudo /sbin/vboxconfig
 
-echo
-echo "=================================="
-echo "Instalacao do Docker"
-echo "=================================="
-sudo apt update -y
-sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-sudo apt-key fingerprint 0EBFCD88
-sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu    bionic    stable"
-sudo apt update -y
-sudo apt install docker-ce docker-ce-cli containerd.io -y
+# Install Docker
+## Uninstall old versions
+sudo apt remove docker docker-engine docker.io containerd runc
+## Set up the repository
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+## Install Docker Engine
+sudo apt update
+sudo apt install -y docker-ce docker-ce-cli containerd.io
 
-echo
-echo "=================================="
-echo "Instalacao do Docker-Compose"
-echo "=================================="
-sudo apt update -y
-sudo curl -L "https://github.com/docker/compose/releases/download/1.25.3/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+# Install Docker-compose
+sudo curl -L "https://github.com/docker/compose/releases/download/1.26.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 sudo chmod +x /usr/local/bin/docker-compose
 
-echo
-echo "=================================="
-echo "Finalizacao"
-echo "=================================="
-sudo apt update -y
+# Install Spotify
+## Set up the repository
+curl -sS https://download.spotify.com/debian/pubkey.gpg | sudo apt-key add - 
+# deb http://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list
+## Install Spotify client
+sudo apt update && sudo apt install -y spotify-client
+
+# Install Node
+curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
+sudo apt install -y nodejs
+
+# Install Yarn
+## Set up the repository
+curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+# deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+## Install Yarn
+sudo apt update && sudo apt install -y yarn
+
+# Install Insomnia
+## Add to sources
+# deb https://dl.bintray.com/getinsomnia/Insomnia /" | sudo tee -a /etc/apt/sources.list.d/insomnia.list
+## Add public key used to verify code signature
+wget --quiet -O - https://insomnia.rest/keys/debian-public.key.asc | sudo apt-key add -
+## Refresh repository sources and install Insomnia
+sudo apt update
+sudo apt install insomnia
+
+# Completion
+sudo apt update
 sudo apt full-upgrade -y
