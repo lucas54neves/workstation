@@ -108,7 +108,7 @@ sudo apt install -y insomnia
 
 # Install BitTorrent Transmission
 ## Add the repository
-sudo add-apt-repository ppa:transmissionbt/ppa -y
+sudo add-apt-repository -y ppa:transmissionbt/ppa
 ## Update the APT
 sudo apt update
 ## Install the program
@@ -116,7 +116,7 @@ sudo apt install -y transmission transmission-qt
 
 # Install Youtube-dl
 ## Add the repository
-sudo add-apt-repository ppa:nilarimogard/webupd8
+sudo add-apt-repository -y ppa:nilarimogard/webupd8
 ## Update the APT
 sudo apt update
 ## Install the program
