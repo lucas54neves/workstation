@@ -22,22 +22,26 @@ programsToBeInstalledAPT=(
     gnupg-agent
     software-properties-common
     snapd
+    mplayer
+    mysql-server
 )
 
 # Programs to be installed in Snap
 programsToBeInstalledSnap=(
     telegram-desktop
     spotify
+    transgui-test
 )
 
 # External program URLs
 URLs=(
-    "https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb"s
+    "https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb"
     "https://download.virtualbox.org/virtualbox/6.1.10/virtualbox-6.1_6.1.10-138449~Ubuntu~eoan_amd64.deb"
-    "https://atom-installer.github.com/v1.48.0/atom-amd64.deb?s=1591785581&ext=.deb"
     "https://dl.discordapp.net/apps/linux/0.0.10/discord-0.0.10.deb"
     "https://az764295.vo.msecnd.net/stable/cd9ea6488829f560dc949a8b2fb789f3cdc05f5d/code_1.46.1-1592428892_amd64.deb"
     "https://d2t3ff60b2tol4.cloudfront.net/builds/insync_3.2.1.40839-bionic_amd64.deb"
+    "https://dbeaver.io/files/7.1.2/dbeaver-ce_7.1.2_amd64.deb"
+    "https://cdn.mysql.com//Downloads/MySQLGUITools/mysql-workbench-community_8.0.21-1ubuntu20.04_amd64.deb"
 )
 
 # System update
@@ -83,7 +87,7 @@ sudo curl -L "https://github.com/docker/compose/releases/download/1.26.2/docker-
 sudo chmod +x /usr/local/bin/docker-compose
 
 # Install Node
-curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
+curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
 sudo apt install -y nodejs
 
 # Install Yarn
@@ -101,6 +105,14 @@ wget --quiet -O - https://insomnia.rest/keys/debian-public.key.asc | sudo apt-ke
 ## Refresh repository sources and install Insomnia
 sudo apt update
 sudo apt install -y insomnia
+
+# Install BitTorrent Transmission
+## Add the repository
+sudo add-apt-repository ppa:transmissionbt/ppa -y
+## Updates the APT
+sudo apt update
+## Install the program
+sudo apt install -y transmission transmission-qt
 
 # Completion
 sudo apt update
