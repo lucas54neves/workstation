@@ -4,6 +4,9 @@
 sudo rm /var/lib/dpkg/lock-frontend
 sudo rm /var/cache/apt/archives/lock
 
+# Remove snap block
+sudo rm /etc/apt/preferences.d/nosnap.pref
+
 # Downloads directory
 downloadsDirectory="$HOME/Downloads"
 
@@ -24,13 +27,13 @@ programsToBeInstalledAPT=(
     snapd
     mplayer
     mysql-server
+    gparted
 )
 
 # Programs to be installed in Snap
 programsToBeInstalledSnap=(
     telegram-desktop
     spotify
-    transgui-test
 )
 
 # External program URLs
@@ -39,7 +42,7 @@ URLs=(
     "https://download.virtualbox.org/virtualbox/6.1.10/virtualbox-6.1_6.1.10-138449~Ubuntu~eoan_amd64.deb"
     "https://dl.discordapp.net/apps/linux/0.0.10/discord-0.0.10.deb"
     "https://az764295.vo.msecnd.net/stable/cd9ea6488829f560dc949a8b2fb789f3cdc05f5d/code_1.46.1-1592428892_amd64.deb"
-    "https://d2t3ff60b2tol4.cloudfront.net/builds/insync_3.2.1.40839-bionic_amd64.deb"
+    "https://d2t3ff60b2tol4.cloudfront.net/builds/insync_3.2.3.40853-focal_amd64.deb"
     "https://dbeaver.io/files/7.1.2/dbeaver-ce_7.1.2_amd64.deb"
     "https://cdn.mysql.com//Downloads/MySQLGUITools/mysql-workbench-community_8.0.21-1ubuntu20.04_amd64.deb"
 )
@@ -69,15 +72,18 @@ sudo apt update
 sudo dpkg -i $downloadsDirectory/*.deb
 sudo apt install -fy
 
+# Remove deb files
+rm $downloadsDirectory/*.deb
+
 # Required VirtualBox configuration
 sudo /sbin/vboxconfig
 
 # Install Docker
 ## Uninstall old versions
-sudo apt remove docker docker-engine docker.io containerd runc
+sudo apt remove docker docker.io containerd runc
 ## Set up the repository
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"
 ## Install Docker Engine
 sudo apt update
 sudo apt install -y docker-ce docker-ce-cli containerd.io
@@ -106,14 +112,6 @@ wget --quiet -O - https://insomnia.rest/keys/debian-public.key.asc | sudo apt-ke
 sudo apt update
 sudo apt install -y insomnia
 
-# Install BitTorrent Transmission
-## Add the repository
-sudo add-apt-repository -y ppa:transmissionbt/ppa
-## Update the APT
-sudo apt update
-## Install the program
-sudo apt install -y transmission transmission-qt
-
 # Install Youtube-dl
 ## Add the repository
 sudo add-apt-repository -y ppa:nilarimogard/webupd8
@@ -125,3 +123,11 @@ sudo apt install -y youtube-dl
 # Completion
 sudo apt update
 sudo apt full-upgrade -y
+
+# Manage Docker as a non-root user
+## Create the docker group.
+sudo groupadd docker
+## Add your user to the docker group.
+sudo usermod -aG docker $USER
+# Activate the changes to groups
+newgrp docker
