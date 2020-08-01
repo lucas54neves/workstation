@@ -1,2 +1,2 @@
 # workstation
-Ubuntu post-installation automation
+Linux Mint 20 post-installation automation
