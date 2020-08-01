@@ -1,11 +1,9 @@
 #!bin/bash
 
-# Removing eventual APT locks
-sudo rm /var/lib/dpkg/lock-frontend
-sudo rm /var/cache/apt/archives/lock
-
-# Remove snap block
-sudo rm /etc/apt/preferences.d/nosnap.pref
+# Import functions
+for file in functions/*.sh; do
+    source $file
+done
 
 # Downloads directory
 downloadsDirectory="$HOME/Downloads"
@@ -47,87 +45,56 @@ URLs=(
     "https://cdn.mysql.com//Downloads/MySQLGUITools/mysql-workbench-community_8.0.21-1ubuntu20.04_amd64.deb"
 )
 
+# Remove eventual APT locks
+removeAPTLocks
+
+# Remove snap block
+removeSnapBlock
+
 # System update
-sudo apt update && sudo apt upgrade -y
+updateSystem
 
 # Installing APT programs
-sudo apt update
-for programName in ${programsToBeInstalledAPT[@]}; do
-    sudo apt install "$programName" -y
-done
+updateRepositoryList
+installAPTPrograms "${programsToBeInstalledAPT[@]}"
 
 # Installing Snap programs
-sudo apt update
-for programName in ${programsToBeInstalledSnap[@]}; do
-    sudo snap install "$programName"
-done
+updateRepositoryList
+installSnapPrograms "${programsToBeInstalledSnap[@]}"
 
 # Download external programs
-for url in ${URLs[@]}; do
-  wget -c "$url" -P "$downloadsDirectory"
-done
+downloadExternalPrograms "${URLs[@]}"
 
 # Installing external programs
-sudo apt update
-sudo dpkg -i $downloadsDirectory/*.deb
-sudo apt install -fy
+updateRepositoryList
+installExternalPrograms $downloadsDirectory
 
 # Remove deb files
-rm $downloadsDirectory/*.deb
+removeDebFiles $downloadsDirectory
 
 # Required VirtualBox configuration
-sudo /sbin/vboxconfig
+configVirtualBox
 
 # Install Docker
-## Uninstall old versions
-sudo apt remove docker docker.io containerd runc
-## Set up the repository
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"
-## Install Docker Engine
-sudo apt update
-sudo apt install -y docker-ce docker-ce-cli containerd.io
-
-# Install Docker-compose
-sudo curl -L "https://github.com/docker/compose/releases/download/1.26.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-sudo chmod +x /usr/local/bin/docker-compose
-
-# Install Node
-curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
-sudo apt install -y nodejs
-
-# Install Yarn
-## Set up the repository
-curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
-echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
-## Install Yarn
-sudo apt update && sudo apt install -y yarn
-
-# Install Insomnia
-## Add to sources
-echo "deb https://dl.bintray.com/getinsomnia/Insomnia /" | sudo tee -a /etc/apt/sources.list.d/insomnia.list
-## Add public key used to verify code signature
-wget --quiet -O - https://insomnia.rest/keys/debian-public.key.asc | sudo apt-key add -
-## Refresh repository sources and install Insomnia
-sudo apt update
-sudo apt install -y insomnia
-
-# Install Youtube-dl
-## Add the repository
-sudo add-apt-repository -y ppa:nilarimogard/webupd8
-## Update the APT
-sudo apt update
-## Install the program
-sudo apt install -y youtube-dl
-
-# Completion
-sudo apt update
-sudo apt full-upgrade -y
+installDocker
 
 # Manage Docker as a non-root user
-## Create the docker group.
-sudo groupadd docker
-## Add your user to the docker group.
-sudo usermod -aG docker $USER
-# Activate the changes to groups
-newgrp docker
+(manageDockerAsANonRootUser)
+
+# Install Docker-compose
+installDockerCompose
+
+# Install Node
+installNode 12
+
+# Install Yarn
+installYarn
+
+# Install Insomnia
+installInsomnia
+
+# Install Youtube-dl
+installYoutubeDl
+
+# Complete workstation installation
+completeWorkstationInstallation
