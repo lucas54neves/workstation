@@ -53,6 +53,6 @@ $ ./workstation.sh
 Feel free to file a new issue with a respective title and description on the the [Workstation Automated](https://github.com/lucas54neves/workstation/issues) repository. If you already found a solution to your problem, I would love to review your pull request!
 
 # License
-This project is under the [MIT license](https://github.com/lucas54neves/workstation/master/LICENSE).
+This project is under the [MIT license](https://github.com/lucas54neves/workstation/blob/master/LICENSE).
 
 Give a ⭐️ if this project helped you!
