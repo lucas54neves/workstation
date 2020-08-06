@@ -79,7 +79,7 @@ configVirtualBox
 installDocker
 
 # Manage Docker as a non-root user
-(manageDockerAsANonRootUser)
+manageDockerAsANonRootUser
 
 # Install Docker-compose
 installDockerCompose
@@ -98,3 +98,8 @@ installYoutubeDl
 
 # Complete workstation installation
 completeWorkstationInstallation
+
+# Reboot the system
+echo 'The system will reboot in 10 seconds.'
+sleep 10
+reboot
