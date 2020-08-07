@@ -13,7 +13,7 @@
 
 <p align="center">	
   <a href="https://www.linkedin.com/in/lucas54neves/">
-    <img alt="Rafael Goulart" src="https://img.shields.io/badge/-lucas54neves-green?style=flat&logo=Linkedin&logoColor=white" />
+    <img alt="Lucas Neves" src="https://img.shields.io/badge/-lucas54neves-green?style=flat&logo=Linkedin&logoColor=white" />
   </a>
     <img alt="Repository size" src="https://img.shields.io/github/repo-size/lucas54neves/workstation?color=green">
   <a href="https://github.com/lucas54neves/workstation/commits/master">
