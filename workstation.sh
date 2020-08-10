@@ -1,4 +1,4 @@
-#!bin/bash
+#!/bin/bash
 
 # Import functions
 for file in functions/*.sh; do
@@ -95,6 +95,9 @@ installInsomnia
 
 # Install Youtube-dl
 installYoutubeDl
+
+# Install Plank
+installPlank
 
 # Complete workstation installation
 completeWorkstationInstallation
