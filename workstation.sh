@@ -43,6 +43,7 @@ URLs=(
     "https://d2t3ff60b2tol4.cloudfront.net/builds/insync_3.2.3.40853-focal_amd64.deb"
     "https://dbeaver.io/files/7.1.2/dbeaver-ce_7.1.2_amd64.deb"
     "https://cdn.mysql.com//Downloads/MySQLGUITools/mysql-workbench-community_8.0.21-1ubuntu20.04_amd64.deb"
+    "https://linux.dropbox.com/packages/ubuntu/dropbox_2020.03.04_amd64.deb"
 )
 
 # Remove eventual APT locks
