@@ -27,6 +27,7 @@ programsToBeInstalledAPT=(
     mysql-server
     gparted
     python3-gpg
+    sqlite3
 )
 
 # Programs to be installed in Snap
