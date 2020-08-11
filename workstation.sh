@@ -26,6 +26,7 @@ programsToBeInstalledAPT=(
     mplayer
     mysql-server
     gparted
+    python3-gpg
 )
 
 # Programs to be installed in Snap
