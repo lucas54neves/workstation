@@ -28,6 +28,7 @@ programsToBeInstalledAPT=(
     gparted
     python3-gpg
     sqlite3
+    vlc
 )
 
 # Programs to be installed in Snap
