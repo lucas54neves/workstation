@@ -57,52 +57,112 @@ URLs=(
 )
 
 # Remove eventual APT locks
+echo
+echo "Eventual APT locks will be removed"
+echo
+sleep 5
 removeAPTLocks
 
 # Remove snap block
+echo
+echo "Snap block will be removed"
+echo
+sleep 5
 removeSnapBlock
 
 # System update
+echo
+echo "System will be updated"
+echo
+sleep 5
 updateSystem
 
 # Installing APT programs
+echo
+echo "APT programs will be installed"
+echo
+sleep 5
 updateRepositoryList
 installAPTPrograms "${programsToBeInstalledAPT[@]}"
 
 # Installing Snap programs
+echo
+echo "Snap programs will be installed"
+echo
+sleep 5
 updateRepositoryList
 installSnapPrograms "${programsToBeInstalledSnap[@]}"
 installSnapProgramsClassic "${programsToBeInstalledSnapClassic[@]}"
 
 # Download external programs
+echo
+echo "External programs will be downloaded"
+echo
+sleep 5
 downloadExternalPrograms "${URLs[@]}"
 
 # Installing external programs
+echo
+echo "External programs will be installed"
+echo
+sleep 5
 updateRepositoryList
 installExternalPrograms $downloadsDirectory
 
 # Remove deb files
+echo
+echo "Deb files will be removed"
+echo
+sleep 5
 removeDebFiles $downloadsDirectory
 
 # Required VirtualBox configuration
+echo
+echo "Required VirtualBox configuration will be configurated"
+echo
+sleep 5
 configVirtualBox
 
 # Install Docker
+echo
+echo "Docker will be installed"
+echo
+sleep 5
 installDocker
 
 # Manage Docker as a non-root user
+echo
+echo "Docker will be configured for use by non-root users"
+echo
+sleep 5
 manageDockerAsANonRootUser
 
 # Install Docker-compose
+echo
+echo "Docker-compose will be installed"
+echo
+sleep 5
 installDockerCompose
 
 # Install Yarn
+echo
+echo "Yarn will be installed"
+echo
+sleep 5
 installYarn
 
 # Install Plank
+echo
+echo "Plank will be installed"
+echo
+sleep 5
 installPlank
 
 # Complete workstation installation
+echo
+echo "Workstation installation will be completed"
+echo
+sleep 5
 completeWorkstationInstallation
 
 # Reboot the system
