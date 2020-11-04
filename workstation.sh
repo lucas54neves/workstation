@@ -34,7 +34,6 @@ programsToBeInstalledAPT=(
 programsToBeInstalledSnap=(
     "telegram-desktop"
     "spotify"
-    "discord"
     "vlc"
     "youtube-dl"
     "insomnia"
@@ -43,7 +42,6 @@ programsToBeInstalledSnap=(
 )
 # Programs to be installed in Snap
 programsToBeInstalledSnapClassic=(
-    "code"
     "node"
 )
 
@@ -54,6 +52,8 @@ URLs=(
     "https://d2t3ff60b2tol4.cloudfront.net/builds/insync_3.2.5.40859-focal_amd64.deb"
     "https://linux.dropbox.com/packages/ubuntu/dropbox_2020.03.04_amd64.deb"
     "https://mega.nz/linux/MEGAsync/xUbuntu_20.04/amd64/megasync-xUbuntu_20.04_amd64.deb"
+    "https://dl.discordapp.net/apps/linux/0.0.12/discord-0.0.12.deb"
+    "https://az764295.vo.msecnd.net/stable/d2e414d9e4239a252d1ab117bd7067f125afd80a/code_1.50.1-1602600906_amd64.deb"
 )
 
 # Remove eventual APT locks
