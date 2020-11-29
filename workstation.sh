@@ -23,7 +23,6 @@ programsToBeInstalledAPT=(
     "gparted"
     "python3-gpg"
     "sqlite3"
-    "nodejs"
     "npm" 
 )
 
@@ -101,7 +100,6 @@ sudo /sbin/vboxconfig
 sudo apt remove docker docker.io containerd runc
 ## Set up the repository
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-#@$@#%$%$#%#$TDGDF
 sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"
 ## Install Docker Engine
 sudo apt update
@@ -118,6 +116,12 @@ sudo service docker restart
 # Install Docker-compose
 sudo curl -L "https://github.com/docker/compose/releases/download/1.26.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 sudo chmod +x /usr/local/bin/docker-compose
+
+# Install Node LTS
+curl -sL https://deb.nodesource.com/setup_lts.x | sudo -E bash -
+sudo apt-get install -y nodejs
+## Install build tools
+sudo apt install -y build-essential
 
 # Install Yarn
 ## Set up the repository
