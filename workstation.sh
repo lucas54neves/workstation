@@ -130,9 +130,19 @@ sudo apt update && sudo apt install -y yarn
 # Add repository
 sudo add-apt-repository -y ppa:ricotz/docky
 # Update repository list
-sudo apt-get update
+sudo apt update
 # Install program
-sudo apt-get install -y plank
+sudo apt install -y plank
+
+# Install OBS Studio
+## Install FFmpeg
+sudo apt install -y ffmpeg
+## Add repository
+sudo add-apt-repository -y ppa:obsproject/obs-studio
+## Update repository list
+sudo apt update
+## Install program
+sudo apt install -y obs-studio
 
 # Complete workstation installation
 sudo apt update
