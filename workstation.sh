@@ -23,7 +23,14 @@ programsToBeInstalledAPT=(
     "gparted"
     "python3-gpg"
     "sqlite3"
-    "npm" 
+    "npm"
+    "libgl1-mesa-dri:i386"
+    "libgl1:i386"
+    "libc6:i386"
+    "libglu1-mesa-dev"
+    "freeglut3-dev"
+    "mesa-common-dev"
+
 )
 
 # Programs to be installed in Snap
@@ -35,9 +42,6 @@ programsToBeInstalledSnap=(
     "insomnia"
     "dbeaver-ce"
     "mysql-workbench-community"
-    "libgl1-mesa-dri:i386"
-    "libgl1:i386"
-    "libc6:i386"
 )
 
 # External program URLs
