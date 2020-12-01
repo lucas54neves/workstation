@@ -43,6 +43,11 @@ programsToBeInstalledSnap=(
     "dbeaver-ce"
     "mysql-workbench-community"
 )
+programsToBeInstalledSnapClassic=(
+	"slack"
+)
+
+sudo snap install slack --classic
 
 # External program URLs
 URLs=(
@@ -80,6 +85,10 @@ sudo apt update
 ## Install programs
 for programName in "${programsToBeInstalledSnap[@]}"; do
     sudo snap install "$programName"
+done
+## Install classic programs
+for programName in "${programsToBeInstalledSnapClassic[@]}"; do
+	sudo snap install "$programName" --classic
 done
 
 # Download external programs
