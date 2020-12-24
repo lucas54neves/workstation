@@ -15,7 +15,7 @@
 
 <p align="center">	
   <a href="https://www.linkedin.com/in/lucas54neves/">
-    <img alt="Lucas Neves" src="https://img.shields.io/badge/-lucas54neves-E95420?style=flat&logo=Linkedin&logoColor=E95420" />
+    <img alt="Lucas Neves" src="https://img.shields.io/badge/-lucas54neves-E95420?style=flat&logo=Linkedin&logoColor=black" />
   </a>
     <img alt="Repository size" src="https://img.shields.io/github/repo-size/lucas54neves/workstation?color=E95420">
   <a href="https://github.com/lucas54neves/workstation/commits/master">
