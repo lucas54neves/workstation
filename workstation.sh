@@ -57,6 +57,7 @@ URLs=(
     "https://repo.steampowered.com/steam/archive/precise/steam_latest.deb"
     "https://az764295.vo.msecnd.net/stable/e5a624b788d92b8d34d1392e4c4d9789406efe8f/code_1.51.1-1605051630_amd64.deb"
     "https://cloud.gastecnologia.com.br/bb/downloads/ws/warsaw_setup64.deb"
+    "https://packages.microsoft.com/repos/ms-teams/pool/main/t/teams/teams_1.3.00.30857_amd64.deb"
 )
 
 # Remove eventual APT locks
