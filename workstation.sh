@@ -48,8 +48,6 @@ programsToBeInstalledSnapClassic=(
 	"slack"
 )
 
-sudo snap install slack --classic
-
 # External program URLs
 URLs=(
     "https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb"
