@@ -165,6 +165,3 @@ sudo apt install -y obs-studio
 # Complete workstation installation
 sudo apt update
 sudo apt full-upgrade -y
-
-# Reboot the system
-reboot
