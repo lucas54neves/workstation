@@ -58,6 +58,7 @@ URLs=(
     "https://az764295.vo.msecnd.net/stable/e5a624b788d92b8d34d1392e4c4d9789406efe8f/code_1.51.1-1605051630_amd64.deb"
     "https://cloud.gastecnologia.com.br/bb/downloads/ws/warsaw_setup64.deb"
     "https://packages.microsoft.com/repos/ms-teams/pool/main/t/teams/teams_1.3.00.30857_amd64.deb"
+    "https://mega.nz/linux/MEGAsync/xUbuntu_20.04/amd64/megasync-xUbuntu_20.04_amd64.deb"
 )
 
 # Remove eventual APT locks
