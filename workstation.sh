@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Downloads directory
-downloadsDirectory="$HOME/Downloads"
+downloadsDirectory="$HOME/Downloads/WorkstationFiles"
 
 # Programs to be installed in APT
 programsToBeInstalledAPT=(
@@ -53,7 +53,7 @@ URLs=(
     "https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb"
     "https://download.virtualbox.org/virtualbox/6.1.16/virtualbox-6.1_6.1.16-140961~Ubuntu~eoan_amd64.deb"
     "https://linux.dropbox.com/packages/ubuntu/dropbox_2020.03.04_amd64.deb"
-    "https://dl.discordapp.net/apps/linux/0.0.12/discord-0.0.12.deb"
+    "https://dl.discordapp.net/apps/linux/0.0.13/discord-0.0.13.deb"
     "https://repo.steampowered.com/steam/archive/precise/steam_latest.deb"
     "https://az764295.vo.msecnd.net/stable/e5a624b788d92b8d34d1392e4c4d9789406efe8f/code_1.51.1-1605051630_amd64.deb"
     "https://cloud.gastecnologia.com.br/bb/downloads/ws/warsaw_setup64.deb"
