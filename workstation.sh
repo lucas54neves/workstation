@@ -31,7 +31,8 @@ programsToBeInstalledAPT=(
     "freeglut3-dev"
     "mesa-common-dev"
     "python3-venv"
-
+    "python3-pip"
+    "python-dev"
 )
 
 # Programs to be installed in Snap
