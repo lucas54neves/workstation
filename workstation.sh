@@ -40,9 +40,9 @@ programsToBeInstalledSnap=(
     "spotify"
     "vlc"
     "youtube-dl"
-    "insomnia"
     "dbeaver-ce"
     "mysql-workbench-community"
+    "postman"
 )
 programsToBeInstalledSnapClassic=(
 	"slack"
