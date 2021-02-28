@@ -18,6 +18,7 @@ programsToCheckedAPT=(
   "dropbox"
   "discord"
   "google-chrome-stable"
+  "virtualbox"
 )
 
 programsToCheckedSnap=(

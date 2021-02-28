@@ -10,6 +10,7 @@ programsToBeInstalledAPT=(
     "ca-certificates"
     "gnupg-agent"
     "software-properties-common"
+    "virtualbox"
 )
 
 function installAptPrograms() {
