@@ -1,21 +1,80 @@
 #!/bin/bash
 
-source functions/updateSystem.sh
-source functions/installAptPrograms.sh
-source functions/installExternalPrograms.sh
-source functions/installSnapPrograms.sh
-source functions/installDocker.sh
-source functions/installNodeYarn.sh
-source functions/installOBS.sh
-source functions/completeInstallation.sh
-source functions/checkPrograms.sh
+# External program URLs
+URLs=(
+  "https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb"
+  "https://cdn.zoom.us/prod/5.6.20278.0524/zoom_amd64.deb"
+  "https://release.gitkraken.com/linux/gitkraken-amd64.deb"
+  "https://dl.discordapp.net/apps/linux/0.0.15/discord-0.0.15.deb"
+  "https://linux.dropbox.com/packages/ubuntu/dropbox_2020.03.04_amd64.deb"
+  "https://download.docker.com/linux/ubuntu/dists/focal/pool/stable/amd64/docker-ce-cli_20.10.6~3-0~ubuntu-focal_amd64.deb"
+)
 
-updateSystem
-installAptPrograms
-installExternalPrograms
-installSnapPrograms
-installDocker
-installNodeYarn
-installOBS
-completeInstallation
-checkPrograms
+# Programs to be installed in APT
+programsToBeInstalledAPT=(
+  "git"
+  "mpv"
+  "mplayer"
+  "python3"
+  "python3-distutils"
+  "python3-venv"
+  "anki"
+  "ffmpeg"
+  "obs-studio"
+  "apt-transport-https"
+  "ca-certificates"
+  "curl"
+  "gnupg"
+  "gnupg-agent"
+  "software-properties-common"
+  "lsb-release"
+  "virtualbox"
+  "virtualbox-ext-pack"
+)
+
+# Programs to be installed in Snap
+programsToBeInstalledSnap=(
+  "postman"
+  "spotify"
+  "telegram-desktop"
+  "dbeaver-ce"
+)
+
+# Programs to be installed in Snap in classic mode
+programsToBeInstalledSnapClassic=(
+  "slack"
+  "code"
+)
+
+# Third-party repositories
+thirdPartyRepositories=(
+  "ppa:obsproject/obs-studio"
+)
+
+# System update
+sudo apt update && sudo apt upgrade -y
+
+# Add third-party repositories
+for repositoryName in "${thirdPartyRepositories[@]}"; do
+  sudo apt-add-repository -y "$repositoryName"
+done
+
+# Install programs with APT
+for programName in "${programsToBeInstalledAPT[@]}"; do
+  sudo apt install -y "$programName"
+done
+
+# Install programs with Snap
+for programName in "${programsToBeInstalledSnap[@]}"; do
+  sudo snap install "$programName"
+done
+
+# Install programs with Snap in classic model
+for programName in "$@"; do
+  sudo snap install "$programName" --classic
+done
+
+# Install NodeJS and Yarn
+curl -fsSL https://deb.nodesource.com/setup_12.x | sudo -E bash -
+sudo apt-get install -y nodejs
+npm install --global yarn
