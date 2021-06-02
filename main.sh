@@ -32,6 +32,7 @@ programsToBeInstalledAPT=(
   "gnupg-agent"
   "software-properties-common"
   "lsb-release"
+  "docker-compose"
   "virtualbox"
   "virtualbox-ext-pack"
 )
