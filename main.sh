@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# Constants
+declare -i programsInstalled=0
+declare -i programsNotInstalled=0
+
 # Downloads directory
 downloadsDirectory="$HOME/Downloads/"
 
@@ -55,6 +59,47 @@ thirdPartyRepositories=(
   "ppa:obsproject/obs-studio"
 )
 
+# Programs to be checked in APT at the end of the script
+programsToCheckedAPT=(
+  "git"
+  "mpv"
+  "mplayer"
+  "python3"
+  "python3-distutils"
+  "python3-venv"
+  "anki"
+  "ffmpeg"
+  "obs-studio"
+  "apt-transport-https"
+  "ca-certificates"
+  "curl"
+  "gnupg"
+  "gnupg-agent"
+  "software-properties-common"
+  "lsb-release"
+  "docker-compose"
+  "virtualbox"
+  "virtualbox-ext-pack"
+  "docker"
+  "node"
+  "zoom"
+  "gitkraken"
+  "code"
+  "dropbox"
+  "discord"
+  "google-chrome-stable"
+  "virtualbox"
+)
+
+# Programs to be checked in Snap at the end of the script
+programsToCheckedSnap=(
+  "slack"
+  "postman"
+  "dbeaver-ce"
+  "telegram-desktop"
+  "spotify"
+)
+
 # System update
 sudo apt update && sudo apt upgrade -y
 
@@ -96,3 +141,46 @@ sudo apt install -y nodejs
 
 # Installing Yarn
 sudo npm install --global yarn
+
+# Script execution report
+echo "==========================="
+echo "=== Installation report ==="
+echo "==========================="
+echo "Checking..."
+
+for programName in "${programsToCheckedAPT[@]}"; do
+  package=$(dpkg --get-selections | grep "$programName" ) 
+  if [ -n "$package" ];
+  then
+    programsInstalled=`expr ${programsInstalled} + 1`
+  else
+    echo "### $programName was not istalled."
+    programsNotInstalled=`expr ${programsNotInstalled} + 1`
+  fi
+done
+
+for programName in "${programsToCheckedSnap[@]}"; do
+  package=$(snap list | grep "$programName" ) 
+  if [ -n "$package" ]
+  then
+    programsInstalled=`expr ${programsInstalled} + 1`
+  else
+    echo "### $programName was not istalled."
+    programsNotInstalled=`expr ${programsNotInstalled} + 1`
+  fi
+done
+
+yarnWasInstallated=$(npm list -g --depth=0 | grep yarn)
+IFS='@' read -r -a yarnVersion <<< $yarnWasInstallated
+if [ -n "${yarnVersion[1]}" ]
+then
+  programsInstalled=`expr ${programsInstalled} + 1`
+else
+  echo "### yarn was not istalled."
+  programsNotInstalled=`expr ${programsNotInstalled} + 1`
+fi
+
+echo "==========================="
+echo "Programs that was installed: "${programsInstalled}
+echo "Programs that was not installed: "${programsNotInstalled}
+echo "==========================="
