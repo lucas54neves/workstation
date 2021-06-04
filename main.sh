@@ -16,6 +16,7 @@ URLs=(
   "https://linux.dropbox.com/packages/ubuntu/dropbox_2020.03.04_amd64.deb"
   "https://download.docker.com/linux/ubuntu/dists/focal/pool/stable/amd64/docker-ce-cli_20.10.6~3-0~ubuntu-focal_amd64.deb"
   "https://az764295.vo.msecnd.net/stable/054a9295330880ed74ceaedda236253b4f39a335/code_1.56.2-1620838498_amd64.deb"
+  "https://iriun.gitlab.io/iriunwebcam-2.4.1.deb"
 )
 
 # Programs to be installed in APT
