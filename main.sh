@@ -17,6 +17,8 @@ URLs=(
   "https://download.docker.com/linux/ubuntu/dists/focal/pool/stable/amd64/docker-ce-cli_20.10.6~3-0~ubuntu-focal_amd64.deb"
   "https://az764295.vo.msecnd.net/stable/054a9295330880ed74ceaedda236253b4f39a335/code_1.56.2-1620838498_amd64.deb"
   "https://iriun.gitlab.io/iriunwebcam-2.4.1.deb"
+  "https://downloads.slack-edge.com/linux_releases/slack-desktop-4.16.0-amd64.deb"
+  "https://download.dbeaver.com/community/21.1.0/dbeaver-ce_21.1.0_amd64.deb"
 )
 
 # Programs to be installed in APT
@@ -45,14 +47,7 @@ programsToBeInstalledAPT=(
 # Programs to be installed in Snap
 programsToBeInstalledSnap=(
   "postman"
-  "spotify"
   "telegram-desktop"
-  "dbeaver-ce"
-)
-
-# Programs to be installed in Snap in classic mode
-programsToBeInstalledSnapClassic=(
-  "slack"
 )
 
 # Third-party repositories
@@ -90,15 +85,16 @@ programsToCheckedAPT=(
   "discord"
   "google-chrome-stable"
   "virtualbox"
+  "iriun"
+  "slack"
+  "dbeaver"
+  "spotify"
 )
 
 # Programs to be checked in Snap at the end of the script
 programsToCheckedSnap=(
-  "slack"
   "postman"
-  "dbeaver-ce"
   "telegram-desktop"
-  "spotify"
 )
 
 # System update
@@ -140,8 +136,16 @@ curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash -
 ## Install Node LTS
 sudo apt install -y nodejs
 
-# Installing Yarn
+# Install Yarn
 sudo npm install --global yarn
+
+# Install Spotify
+## Configure Spotify debian repository
+curl -sS https://download.spotify.com/debian/pubkey_0D811D58.gpg | sudo apt-key add - 
+echo "deb http://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list
+
+## Install the Spotify client
+sudo apt install -y spotify-client
 
 # Script execution report
 echo "==========================="
