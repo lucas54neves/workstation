@@ -144,6 +144,9 @@ sudo npm install --global yarn
 curl -sS https://download.spotify.com/debian/pubkey_0D811D58.gpg | sudo apt-key add - 
 echo "deb http://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list
 
+## Update repository
+sudo apt update
+
 ## Install the Spotify client
 sudo apt install -y spotify-client
 
@@ -152,6 +155,7 @@ echo "==========================="
 echo "=== Installation report ==="
 echo "==========================="
 echo "Checking..."
+echo "==========================="
 
 for programName in "${programsToCheckedAPT[@]}"; do
   package=$(dpkg --get-selections | grep "$programName" ) 
@@ -159,7 +163,7 @@ for programName in "${programsToCheckedAPT[@]}"; do
   then
     programsInstalled=`expr ${programsInstalled} + 1`
   else
-    echo "### $programName was not istalled."
+    echo "### $programName was not istalled ###"
     programsNotInstalled=`expr ${programsNotInstalled} + 1`
   fi
 done
@@ -170,7 +174,7 @@ for programName in "${programsToCheckedSnap[@]}"; do
   then
     programsInstalled=`expr ${programsInstalled} + 1`
   else
-    echo "### $programName was not istalled."
+    echo "### $programName was not istalled ###"
     programsNotInstalled=`expr ${programsNotInstalled} + 1`
   fi
 done
@@ -181,9 +185,11 @@ if [ -n "${yarnVersion[1]}" ]
 then
   programsInstalled=`expr ${programsInstalled} + 1`
 else
-  echo "### yarn was not istalled."
+  echo "### yarn was not istalled ###"
   programsNotInstalled=`expr ${programsNotInstalled} + 1`
 fi
+
+echo "==========================="
 
 echo "==========================="
 echo "Programs that was installed: "${programsInstalled}
