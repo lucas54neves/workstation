@@ -42,6 +42,7 @@ programsToBeInstalledAPT=(
   "docker-compose"
   "virtualbox"
   "virtualbox-ext-pack"
+  "android-tools-adb"
 )
 
 # Programs to be installed in Snap
@@ -89,6 +90,7 @@ programsToCheckedAPT=(
   "slack"
   "dbeaver"
   "spotify"
+  "android-tools-adb"
 )
 
 # Programs to be checked in Snap at the end of the script
