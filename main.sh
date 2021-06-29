@@ -19,6 +19,7 @@ URLs=(
   "https://iriun.gitlab.io/iriunwebcam-2.4.1.deb"
   "https://downloads.slack-edge.com/linux_releases/slack-desktop-4.16.0-amd64.deb"
   "https://download.dbeaver.com/community/21.1.0/dbeaver-ce_21.1.0_amd64.deb"
+  "https://repo.steampowered.com/steam/archive/precise/steam_latest.deb"
 )
 
 # Programs to be installed in APT
@@ -43,6 +44,9 @@ programsToBeInstalledAPT=(
   "virtualbox"
   "virtualbox-ext-pack"
   "android-tools-adb"
+  "libgl1-mesa-dri:i386"
+  "libgl1:i386"
+  "libc6:i386"
 )
 
 # Programs to be installed in Snap
@@ -91,6 +95,7 @@ programsToCheckedAPT=(
   "dbeaver"
   "spotify"
   "android-tools-adb"
+  "steam"
 )
 
 # Programs to be checked in Snap at the end of the script
