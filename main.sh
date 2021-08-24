@@ -53,6 +53,7 @@ programsToBeInstalledAPT=(
 programsToBeInstalledSnap=(
   "postman"
   "telegram-desktop"
+  "vlc"
 )
 
 # Third-party repositories
