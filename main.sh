@@ -47,6 +47,8 @@ programsToBeInstalledAPT=(
   "libgl1-mesa-dri:i386"
   "libgl1:i386"
   "libc6:i386"
+  "default-jre"
+  "default-jdk"
 )
 
 # Programs to be installed in Snap
