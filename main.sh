@@ -49,6 +49,7 @@ programsToBeInstalledAPT=(
   "libc6:i386"
   "default-jre"
   "default-jdk"
+  "python3-pip"
 )
 
 # Programs to be installed in Snap
