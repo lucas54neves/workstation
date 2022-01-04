@@ -23,6 +23,9 @@ programsToBeInstalledAPT=(
     "lsb-release"
     "default-jre"
     "default-jdk"
+    "libgl1-mesa-dri:i386"
+    "libgl1:i386"
+    "libc6:i386"
 )
 
 # Programs to be installed in Snap
@@ -46,6 +49,7 @@ URLs=(
     "https://linux.dropbox.com/packages/ubuntu/dropbox_2020.03.04_amd64.deb"
     "https://az764295.vo.msecnd.net/stable/899d46d82c4c95423fb7e10e68eba52050e30ba3/code_1.63.2-1639562499_amd64.deb"
     "https://packages.microsoft.com/repos/ms-teams/pool/main/t/teams/teams_1.4.00.26453_amd64.deb"
+    "https://repo.steampowered.com/steam/archive/precise/steam_latest.deb"
 )
 
 # Add repositories
