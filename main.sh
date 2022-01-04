@@ -21,7 +21,8 @@ programsToBeInstalledAPT=(
     "gnupg-agent"
     "software-properties-common"
     "lsb-release"
-    "openjdk-17-jdk"
+    "default-jre"
+    "default-jdk"
 )
 
 # Programs to be installed in Snap
