@@ -39,6 +39,7 @@ programsToBeInstalledSnap=(
 # Programs to be installed in Snap in Classic Mode
 programsToBeInstalledSnapClassic=(
     "slack"
+    "google-cloud-sdk"
 )
 
 # External program URLs
