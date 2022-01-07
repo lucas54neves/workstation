@@ -13,6 +13,7 @@ programsToBeInstalledAPT=(
     "python3-venv"
     "python3-gpg"
     "python3-pip"
+    "python3-flask"
     "anki"
     "apt-transport-https"
     "ca-certificates"
