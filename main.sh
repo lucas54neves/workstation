@@ -14,6 +14,7 @@ programsToBeInstalledAPT=(
     "python3-gpg"
     "python3-pip"
     "python3-flask"
+    "libpython3-dev"
     "anki"
     "apt-transport-https"
     "ca-certificates"
@@ -27,6 +28,7 @@ programsToBeInstalledAPT=(
     "libgl1-mesa-dri:i386"
     "libgl1:i386"
     "libc6:i386"
+    "g++"
 )
 
 # Programs to be installed in Snap
