@@ -37,6 +37,7 @@ programsToBeInstalledSnap=(
     "postman"
     "telegram-desktop"
     "spotify"
+    "notion-snap"
 )
 
 # Programs to be installed in Snap in Classic Mode
@@ -112,3 +113,6 @@ sudo apt update && sudo apt install -y docker-ce docker-ce-cli containerd.io
 ## Install Docker-compose
 sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 sudo chmod +x /usr/local/bin/docker-compose
+
+# Install Truffle
+sudo npm install -g truffle
