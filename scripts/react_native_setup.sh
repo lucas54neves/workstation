@@ -73,44 +73,15 @@ else
 	echo "$SEARCH_STRING" >> $FILE_TO_SEARCH
 fi
 
-SEARCH_STRING="export PATH=$PATH:$ANDROID_HOME/emulator"
-
-# Check if the string exists in the file
-if grep -q "$SEARCH_STRING" "$FILE_TO_SEARCH"; then
-    echo "The string '$SEARCH_STRING' was found in '$FILE_TO_SEARCH'."
+# Check if Snap is installed
+if which snap >/dev/null; then
+	# Snap is installed
+	echo "Snap is installed."
 else
-    echo "The string '$SEARCH_STRING' was not found in '$FILE_TO_SEARCH'."
-	echo "$SEARCH_STRING" >> $FILE_TO_SEARCH
-fi
-
-SEARCH_STRING="export PATH=$PATH:$ANDROID_HOME/tools"
-
-# Check if the string exists in the file
-if grep -q "$SEARCH_STRING" "$FILE_TO_SEARCH"; then
-    echo "The string '$SEARCH_STRING' was found in '$FILE_TO_SEARCH'."
-else
-    echo "The string '$SEARCH_STRING' was not found in '$FILE_TO_SEARCH'."
-	echo "$SEARCH_STRING" >> $FILE_TO_SEARCH
-fi
-
-SEARCH_STRING="export PATH=$PATH:$ANDROID_HOME/tools/bin"
-
-# Check if the string exists in the file
-if grep -q "$SEARCH_STRING" "$FILE_TO_SEARCH"; then
-    echo "The string '$SEARCH_STRING' was found in '$FILE_TO_SEARCH'."
-else
-    echo "The string '$SEARCH_STRING' was not found in '$FILE_TO_SEARCH'."
-	echo "$SEARCH_STRING" >> $FILE_TO_SEARCH
-fi
-
-SEARCH_STRING="export PATH=$PATH:$ANDROID_HOME/platform-tools"
-
-# Check if the string exists in the file
-if grep -q "$SEARCH_STRING" "$FILE_TO_SEARCH"; then
-    echo "The string '$SEARCH_STRING' was found in '$FILE_TO_SEARCH'."
-else
-    echo "The string '$SEARCH_STRING' was not found in '$FILE_TO_SEARCH'."
-	echo "$SEARCH_STRING" >> $FILE_TO_SEARCH
+	# Snap is not installed
+	echo "Snap is not installed."
+	sudo mv /etc/apt/preferences.d/nosnap.pref ~/Documents/nosnap.backup
+	sudo apt install -y snapd
 fi
 
 # Check if the program is installed as a Snap package
