@@ -53,6 +53,27 @@ if ! which code >/dev/null 2>&1; then
 	
 	# Notify the user
 	echo "Visual Studio Code will be installed."
+
+fi
+
+# Check if Anki is already installed
+if dpkg -l | grep -q anki; then
+	echo "Anki is already installed."
+fi
+
+# Check if Anki is already installed
+if dpkg -l | grep -q anki; then
+	# Add the Anki PPA repository
+	sudo add-apt-repository -y ppa:anki-team/stable
+
+	# Update package list
+	sudo apt update
+
+	# Install Anki
+	sudo apt install -y anki
+
+	# Notify the user
+	echo "Anki has been installed."
 fi
 
 # Check if Google Chrome is already installed
@@ -73,6 +94,27 @@ if ! dpkg -l | grep -q chrome; then
 	
 	# Notify the user
 	echo "Google Chrome will be installed."
+fi
+
+# Check if Anki is already installed
+# Notify the user
+if dpkg -l | grep -q anki; then
+	echo "Anki is already installed."
+fi
+
+# Check if Anki is already installed
+if dpkg -l | grep -q anki; then
+	# Add the Anki PPA repository
+	sudo add-apt-repository -y ppa:anki-team/stable
+
+	# Update package list
+	sudo apt update
+
+	# Install Anki
+	sudo apt install -y anki
+
+	# Notify the user
+	echo "Anki has been installed."
 fi
 
 # Install External Programs
@@ -97,4 +139,5 @@ sudo apt install -fy
 
 # Notify the user
 echo "External programs installed"
+
 
