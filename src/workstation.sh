@@ -6,7 +6,7 @@ downloadsDirectory="$HOME/Downloads"
 # System update
 sudo apt update && sudo apt upgrade -y
 
-if dpkg -l | grep -q wget; then
+if which wget >/dev/null 2>&1; then
     # Notify the user
     echo "wget is installed."
 else
@@ -18,13 +18,13 @@ else
 fi
 
 # Check if VirtualBox is already installed
-if dpkg -l | grep -q virtualbox; then
+if which virtualbox >/dev/null 2>&1; then
     # Notify the user
     echo "VirtualBox is already installed."
 fi
 
 # Check if VirtualBox is not installed
-if ! dpkg -l | grep -q virtualbox; then
+if ! which virtualbox >/dev/null 2>&1; then
     # Notify the user
     echo "VirtualBox is not installed."
     
@@ -56,33 +56,13 @@ if ! which code >/dev/null 2>&1; then
 
 fi
 
-# Check if Anki is already installed
-if dpkg -l | grep -q anki; then
-	echo "Anki is already installed."
-fi
-
-# Check if Anki is already installed
-if dpkg -l | grep -q anki; then
-	# Add the Anki PPA repository
-	sudo add-apt-repository -y ppa:anki-team/stable
-
-	# Update package list
-	sudo apt update
-
-	# Install Anki
-	sudo apt install -y anki
-
-	# Notify the user
-	echo "Anki has been installed."
-fi
-
 # Check if Google Chrome is already installed
-if dpkg -l | grep -q chrome; then
+if which chrome >/dev/null 2>&1; then
     # Notify the user
     echo "Google Chrome is already installed."
 fi
 
-if ! dpkg -l | grep -q chrome; then
+if ! which chrome >/dev/null 2>&1; then
 	# Notify the user
 	echo "Google Chrome is not installed."
 	
@@ -97,24 +77,66 @@ if ! dpkg -l | grep -q chrome; then
 fi
 
 # Check if Anki is already installed
-# Notify the user
-if dpkg -l | grep -q anki; then
+if which anki >/dev/null 2>&1; then
+	# Notify the user
 	echo "Anki is already installed."
 fi
 
 # Check if Anki is already installed
-if dpkg -l | grep -q anki; then
+if which anki >/dev/null 2>&1; then
 	# Add the Anki PPA repository
 	sudo add-apt-repository -y ppa:anki-team/stable
 
 	# Update package list
 	sudo apt update
 
+	# Check if mplayer is already installed
+	if which mplayer >/dev/null 2>&1; then
+		# Notify the user
+		echo "mplayer is already installed."
+	fi
+
+	# Check if mplayer is not  installed
+	if ! which mplayer >/dev/null 2>&1; then
+		# Notify the user
+		echo "mplayer is not already installed."
+		
+		# Install mplayer
+		sudo apt install -y mplayer
+
+		# Notify the user
+		echo "mplayer has been installed."
+	fi
+
 	# Install Anki
 	sudo apt install -y anki
 
 	# Notify the user
 	echo "Anki has been installed."
+fi
+
+# Check if DBeaver is already installed
+if which dbeaver-ce >/dev/null 2>&1; then
+    # Notify the user
+    echo "DBeaver is already installed."
+fi
+
+# Check if DBeaver is not installed
+if which dbeaver-ce >/dev/null 2>&1; then
+    # Import DBeaver GPG key
+    wget -O - https://dbeaver.io/debs/dbeaver.gpg.key | sudo apt-key add -
+
+    # Add the DBeaver repository
+    echo "deb https://dbeaver.io/debs/dbeaver-ce /" | sudo tee /etc/apt/sources.list.d/dbeaver.list
+
+    # Update package list
+    sudo apt update
+
+    # Install DBeaver Community Edition
+    sudo apt install -y dbeaver-ce
+
+    # Notify the user
+    echo "DBeaver Community Edition has been installed."
 fi
 
 # Install External Programs
