@@ -46,5 +46,3 @@ install_snap_packages() {
         sudo snap install "$programName" --classic
     done
 }
-
-install_snap_packages
