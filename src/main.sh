@@ -38,7 +38,7 @@ installDebFiles() {
 	)
 
 	for URL in "${URLS[@]}"; do
-	    wget -P "$DOWNLOAD_DIRECTORY" "$URL"
+	    wget -P $DOWNLOAD_DIRECTORY $URL
 	done
 
 	deb_files=("$DOWNLOAD_DIRECTORY"/*.deb)
@@ -59,8 +59,8 @@ installAnki() {
 
 	ANKI_DOWNLOAD_URL="https://release-assets.githubusercontent.com/github-production-release-asset/7270538/f715703f-c43b-4ab6-8f95-6714bc5dc33b"
 
-	if [ ! -d "$EXTRACT_DIRECTORY" ]; then
-	    mkdir -p "$EXTRACT_DIRECTORY"
+	if [ ! -d $EXTRACT_DIRECTORY ]; then
+	    mkdir -p $EXTRACT_DIRECTORY
 	fi
 
 	wget -O "$ANKI_ARCHIVE" "$ANKI_DOWNLOAD_URL"
@@ -69,7 +69,7 @@ installAnki() {
 	cd $EXTRACT_DIRECTORY
 	sudo "./install.sh"
 
-	rm -v "$ANKI_ARCHIVE"
+	rm -v $ANKI_ARCHIVE
 	rm -rf $EXTRACT_DIRECTORY
 }
 
