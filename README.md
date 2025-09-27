@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://github.com/lucas54neves/workstation/blob/master/.github/ubuntu-logo.png" alt="Ubuntu logo" width="180" height=60/>
+  <img src="https://github.com/lucas54neves/workstation/blob/main/.github/ubuntu-logo.png" alt="Ubuntu logo" width="180" height=60/>
 </p>
 
 
@@ -16,7 +16,7 @@
     <img alt="Lucas Neves" src="https://img.shields.io/badge/-lucas54neves-E95420?style=flat&logo=Linkedin&logoColor=black" />
   </a>
     <img alt="Repository size" src="https://img.shields.io/github/repo-size/lucas54neves/workstation?color=E95420">
-  <a href="https://github.com/lucas54neves/workstation/commits/master">
+  <a href="https://github.com/lucas54neves/workstation/commits/main">
     <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/lucas54neves/workstation?color=E95420">
   </a> 
     <img alt="License" src="https://img.shields.io/badge/license-MIT-8257E5?color=E95420">
@@ -47,12 +47,12 @@ $ git clone https://github.com/lucas54neves/workstation.git
 $ cd workstation
 
 # Run the script
-$ ./main.sh
+$ ./src/main.sh
 ```
 # Issues
 Feel free to file a new issue with a respective title and description on the the [Workstation Automated](https://github.com/lucas54neves/workstation/issues) repository. If you already found a solution to your problem, I would love to review your pull request!
 
 # License
-This project is under the [MIT license](https://github.com/lucas54neves/workstation/blob/master/LICENSE).
+This project is under the [MIT license](https://github.com/lucas54neves/workstation/blob/main/LICENSE).
 
 Give a ⭐️ if this project helped you!
